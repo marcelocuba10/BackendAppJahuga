@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-//added
-//use Laravel\Passport\Passport;
-
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+
+//passport
+use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //Passport::routes();
+        Passport::routes();
 
         //cuando registramos este email, lo detecta como super admin
         // Gate::before(function($user , $ability){

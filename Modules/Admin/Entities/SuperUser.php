@@ -39,6 +39,6 @@ class SuperUser extends Authenticatable
 
     protected static function newFactory()
     {
-        return \Modules\Admin\Database\factories\SuperUserFactory::new();
+        //return \Modules\Admin\Database\factories\SuperUserFactory::new();
     }
 }

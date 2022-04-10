@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Asuncion',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +177,12 @@ return [
 
         //spatie package
         Spatie\Permission\PermissionServiceProvider::class,
+
+        //Passport
+        Laravel\Passport\PassportServiceProvider::class,
+
+        //Barryvdh
+        //Barryvdh\Cors\ServiceProvider::class
 
     ],
 
