@@ -24,41 +24,27 @@
             <li class="#">
                 <a href="/user/dashboard"><i class="fa fa-line-chart" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
             </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-clone" aria-hidden="true"></i> <span class="nav-label">Extracts</span></a>
+            <li>
+                <a href="#"><i class="fa fa-university" aria-hidden="true"></i> <span class="nav-label">Movimientos</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="#">Entrada</a></li>
+                    <li><a href="#">Salida</a></li>
+                </ul>
             </li>
             <li class="#">
-                <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> <span class="nav-label">Actions</span></a>
+                <a href="/user/grounds"><i class="fa fa-cubes" aria-hidden="true"></i>Canchas<span class="nav-label"></span></a>
             </li>
             <li class="#">
-                <a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i> <span class="nav-label">Deposits</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i> <span class="nav-label">withdrawals</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-university" aria-hidden="true"></i> <span class="nav-label">Transferences</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-cubes" aria-hidden="true"></i> <span class="nav-label">Our Projects</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> <span class="nav-label">Offer Book</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">My Affiliates</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-handshake-o" aria-hidden="true"></i> <span class="nav-label">Work Us</span></a>
+                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> <span class="nav-label">Reservas</span></a>
             </li>
             <li class="#">
                 <a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> <span class="nav-label">FAQ</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span class="nav-label">Settings</span> <span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span class="nav-label">Configuraciones</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="#">General Settings</a></li>
-                    <li><a href="{{ route('users_.show.profile', Auth::user()->id) }}">My Profile</a></li>
+                    <li><a href="{{ route('users_.show.profile', Auth::user()->id) }}">Mi Cuenta</a></li>
                 </ul>
             </li>
             <li>

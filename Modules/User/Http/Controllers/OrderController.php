@@ -12,65 +12,55 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::all();
-        return response()->json($orders);
+        $orders = Order::paginate(5);
+        return view('user::orders.index', compact('orders'));
+    }
+
+    public function create()
+    {
+        return view('user::orders.create');
     }
 
     public function store(Request $request)
     {
-
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'categoryId' => 'required',
-            'date' => 'nullable',
-            'status' => 'required',
-            'userId' => 'nullable',
-            'address' => 'nullable'
+            'title' => 'required|max:100|min:5',
+            'description' => 'required|max:250|min:10',
         ]);
 
-        $order = Order::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'categoryId' => $request->categoryId,
-            'date' => $request->date,
-            'status' => $request->status,
-            //'userId'=>$request->userId,
-            //'address'=>$request->address,
-        ]);
+        Order::create(array_merge($request->only('title', 'description'), ['user_id' => auth()->id()]));
 
-        return response()->json($order);
+        return redirect()->to('/user/orders')->with('message', 'Order created successfully!');
+    }
+
+    public function show($id)
+    {
+        return view('user::orders.show');
+    }
+
+    public function edit(Order $order)
+    {
+        return view('user::orders.edit', compact('order'));
     }
 
     public function update(Request $request, Order $order)
     {
-
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'categoryId' => 'required',
-            'date' => 'nullable',
-            'status' => 'required',
-            'userId' => 'nullable',
-            'address' => 'nullable'
+            'title' => 'required|max:100|min:5',
+            'description' => 'required|max:250|min:10',
         ]);
 
-        $order->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'categoryId' => $request->categoryId,
-            'date' => $request->date,
-            'status' => $request->status,
-            'userId' => $request->userId,
-            'address' => $request->address,
-        ]);
+        $order->update($request->all());
 
-        return response()->json($order);
+        return redirect()->to('/user/orders')->with('message', 'Order updated successfully!');
     }
 
-    public function destroy(Order $order)
+    public function destroy($id)
     {
+        $order = Order::find($id);
+
         $order->delete();
-        return response()->json($order);
+
+        return redirect()->to('/user/orders')->with('message', 'Order deleted successfully');
     }
 }

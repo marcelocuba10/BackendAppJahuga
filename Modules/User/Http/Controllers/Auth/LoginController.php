@@ -20,9 +20,14 @@ class LoginController extends Controller
         return view('user::auth.login');
     }
 
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
-        $credentials = $request->getCredentials();
+        //$credentials = $request->getCredentials();
+
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
 
         if (!Auth::validate($credentials)) {
             return redirect()->to('/user/login')->withErrors('Wrong Credentials');

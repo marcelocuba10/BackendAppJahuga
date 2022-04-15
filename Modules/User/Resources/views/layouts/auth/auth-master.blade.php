@@ -7,11 +7,10 @@
 
     <title>INSPINIA | Login</title>
 
-    <link href="/tema/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/tema/font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="/tema/css/animate.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/login-register.css">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/login.css">
 
 </head>
 
@@ -19,6 +18,10 @@
 
     @yield('content')
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    
 </body>
 
 </html>

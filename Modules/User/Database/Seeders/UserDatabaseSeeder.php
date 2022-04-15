@@ -18,6 +18,6 @@ class UserDatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call(UserTableSeeder::class);
-        $this->call(OrderTableSeeder::class);
+        //$this->call(OrderTableSeeder::class);
     }
 }

@@ -29,6 +29,9 @@ Route::prefix('user')->group(function () {
         Route::get('/dashboard', 'HomeController@index')->name('user.dashboard');
         Route::get('/logout', 'Auth\LogoutController@perform')->name('logout.perform');
 
+        /*** Grounds Routes ***/
+        Route::resource('/grounds','GroundController');
+
         /*** Users Routes ***/
         Route::group(['prefix' => 'users'], function () {
 

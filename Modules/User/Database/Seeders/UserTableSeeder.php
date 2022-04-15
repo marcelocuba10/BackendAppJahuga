@@ -18,10 +18,10 @@ class UserTableSeeder extends Seeder
         Model::unguard();
 
         User::create([
-            'first_name' => 'User teste', 
-            'last_name' => 'user', 
+            'name' => 'User teste', 
+            'company' => 'padelpy', 
             'phone' => '168451212', 
-            'address' => 'av menusu 521', 
+            'address' => 'av mensu 521', 
             'email' => 'user@user.com',
             'password' => 'teste123',
             'terms' => '1'
