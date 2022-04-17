@@ -12,8 +12,8 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::paginate(5);
-        return view('user::orders.index', compact('orders'));
+        $orders= Order::all();
+        return response()->json($orders);
     }
 
     public function create()

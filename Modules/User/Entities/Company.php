@@ -5,25 +5,26 @@ namespace Modules\User\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Ground extends Model
+class Company extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'price',
-        'description',
-        'company_id',
-        'image'
+        'manager',
+        'ruc',
+        'address',
+        'phone',
+        'location_iframe',
     ];
 
-    public function company()
+    public function grounds()
     {
-        return $this->belongsTo(Company::class);
+        return $this->hasMany(Ground::class);
     }
 
     protected static function newFactory()
     {
-        //return \Modules\User\Database\factories\GroundFactory::new();
+        //return \Modules\User\Database\factories\CompanyFactory::new();
     }
 }

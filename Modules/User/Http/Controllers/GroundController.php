@@ -5,7 +5,9 @@ namespace Modules\User\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\User\Entities\Day;
 use Modules\User\Entities\Ground;
+use Modules\User\Entities\Schedule;
 
 class GroundController extends Controller
 {
@@ -25,7 +27,10 @@ class GroundController extends Controller
      */
     public function create()
     {
-        return view('user::grounds.create');
+        $schedules = Schedule::all();
+        $days = Day::all(); 
+
+        return view('user::grounds.create',compact('schedules','days'));
     }
 
     /**
@@ -39,6 +44,7 @@ class GroundController extends Controller
             'name' => 'required|max:100|min:5',
             'price' => 'required',
             'description' => 'required|max:250|min:10',
+            'company_id' => 'required',
             'image' => 'nullable',
         ]);
 
@@ -62,9 +68,15 @@ class GroundController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(Ground $ground)
+    public function edit($id)
     {
-        return view('user::grounds.edit', compact('ground'));
+        $ground = Ground::find($id);
+        $schedules = Schedule::pluck('name', 'name')->all(); //get only names
+        $days = Day::pluck('name', 'name')->all(); //get only names
+        //$isSchedule = $ground->roles->pluck('name')->toArray(); //get user assigned role
+        $isSchedule='12:00';
+        $isDay = 'Lunes';
+        return view('user::grounds.edit', compact('ground','days','schedules','isSchedule','isDay'));
     }
 
     /**
