@@ -3,13 +3,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Crear Nuevo Cliente</h2>
+        <h2>Create new rol</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('users.index') }}">Clientes</a>
+                <a href="{{ route('roles.index') }}">Roles</a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="{{ route('users.create') }}"><b>Nuevo Cliente</b></a>
+                <a href="{{ route('roles.create') }}"><b>New Role</b></a>
             </li>
         </ol>
     </div>
@@ -20,8 +20,8 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-content">
-                    <form method="POST" action="{{ route('users.store') }}">
-                        @include('user::users._partials.form')
+                    <form method="POST" action="{{ route('roles.store') }}">
+                        @include('user::roles._partials.form')
                     </form>
                 </div>
             </div>

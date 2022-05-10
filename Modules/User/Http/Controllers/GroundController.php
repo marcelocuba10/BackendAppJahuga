@@ -8,13 +8,20 @@ use Illuminate\Routing\Controller;
 use Modules\User\Entities\Day;
 use Modules\User\Entities\Ground;
 use Modules\User\Entities\Schedule;
+use Modules\User\Entities\User;
 
 class GroundController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
+
+    public static $days;
+    public static $schedules;
+
+    public function __construct()
+    {
+        self::$days = array("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo");
+        self::$schedules = array("12:00", "14:00", "16:00", "18:00", "20:00", "22:00", "00:00");
+    }
+
     public function index()
     {
         $grounds = Ground::paginate(5);
@@ -28,9 +35,12 @@ class GroundController extends Controller
     public function create()
     {
         $schedules = Schedule::all();
-        $days = Day::all(); 
 
-        return view('user::grounds.create',compact('schedules','days'));
+        
+
+        $user = auth()->user();
+
+        return view('user::grounds.create', compact('schedules', 'days', 'user'));
     }
 
     /**
@@ -43,10 +53,19 @@ class GroundController extends Controller
         $request->validate([
             'name' => 'required|max:100|min:5',
             'price' => 'required',
-            'description' => 'required|max:250|min:10',
-            'company_id' => 'required',
+            'description' => 'nullable|max:250|min:10',
+            'day' => 'required',
+            'schedule' => 'required',
             'image' => 'nullable',
         ]);
+
+        //$days = $request->get('day');   // array:3 [0 => "1", 1 => "2" , 2 => "3"] 
+        //$days = json_encode($request->get('day'));  //  "["1","2","3"]"
+        //$days = implode(",", $request->get('day'));   //  "1,2,3"
+        //dd($days);
+
+        $request->day = json_encode($request->get('day'));
+        $request->schedule = json_encode($request->get('schedule'));
 
         Ground::create($request->all());
 
@@ -70,13 +89,16 @@ class GroundController extends Controller
      */
     public function edit($id)
     {
+
         $ground = Ground::find($id);
-        $schedules = Schedule::pluck('name', 'name')->all(); //get only names
-        $days = Day::pluck('name', 'name')->all(); //get only names
-        //$isSchedule = $ground->roles->pluck('name')->toArray(); //get user assigned role
-        $isSchedule='12:00';
-        $isDay = 'Lunes';
-        return view('user::grounds.edit', compact('ground','days','schedules','isSchedule','isDay'));
+        
+        $days_selected = $ground->day;
+        $schedules_selected = $ground->schedule;
+
+        $days=self::$days;
+        $schedules=self::$schedules;
+
+        return view('user::grounds.edit', compact('ground', 'schedules', 'days', 'days_selected', 'schedules_selected'));
     }
 
     /**
@@ -91,9 +113,14 @@ class GroundController extends Controller
         $request->validate([
             'name' => 'required|max:100|min:5',
             'price' => 'required',
-            'description' => 'required|max:250|min:10',
+            'description' => 'nullable|max:250|min:10',
+            'day' => 'required',
+            'schedule' => 'required',
             'image' => 'nullable',
         ]);
+
+        $request->day = json_encode($request->get('day'));
+        $request->schedule = json_encode($request->get('schedule'));
 
         $ground->update($request->all());
 

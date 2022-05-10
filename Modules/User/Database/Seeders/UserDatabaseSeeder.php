@@ -20,6 +20,7 @@ class UserDatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(DaysTableSeeder::class);
         $this->call(SchedulesTableSeeder::class);
-        //$this->call(OrderTableSeeder::class);
+        $this->call(PermissionTableSeederTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
     }
 }

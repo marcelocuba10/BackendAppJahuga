@@ -6,6 +6,10 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Modules\User\Entities\User;
 
+//spatie
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 class UserTableSeeder extends Seeder
 {
     /**
@@ -17,14 +21,29 @@ class UserTableSeeder extends Seeder
     {
         Model::unguard();
 
-        User::create([
+        $user =  User::create([
             'name' => 'User teste', 
-            'company' => 'padelpy', 
+            'last_name' => 'teste', 
             'phone' => '168451212', 
             'address' => 'av mensu 521', 
             'email' => 'user@user.com',
             'password' => 'teste123',
+
+            'company_name' => 'empresa one', 
+            'manager' => 'roberto carlos',
+            'ruc' => '45255-2', 
+            'location_iframe' => 'url maps aqui',
             'terms' => '1'
         ]);
+
+        $role = Role::create(['name' => 'Admin','guard_name' => 'web'],);
+     
+        $permissions = Permission::pluck('id','id')->all();
+
+        $role->syncPermissions($permissions);
+
+        $user->syncRoles(['admin']);
+     
+        $user->assignRole([$role->id]);
     }
 }

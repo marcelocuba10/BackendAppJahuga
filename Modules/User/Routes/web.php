@@ -29,15 +29,25 @@ Route::prefix('user')->group(function () {
         Route::get('/dashboard', 'HomeController@index')->name('user.dashboard');
         Route::get('/logout', 'Auth\LogoutController@perform')->name('logout.perform');
 
-        /*** Grounds Routes ***/
-        Route::resource('/grounds','GroundController');
-
-        /*** Users Routes ***/
+        /*** User Routes ***/
         Route::group(['prefix' => 'users'], function () {
+            Route::get('/', 'UserController@index')->name('users.index');
+            Route::get('/create', 'UserController@create')->name('users.create');
+            Route::post('/create', 'UserController@store')->name('users.store');
+            Route::get('/{user}/show', 'UserController@show')->name('users.show');
+            Route::get('/edit/{id}', 'UserController@edit')->name('users.edit');
+            Route::put('/update/{id}', 'UserController@update')->name('users.update');
+            Route::delete('/{user}/delete', 'UserController@destroy')->name('users.destroy');
 
             Route::get('/profile/{user}', 'UserController@showProfile')->name('users_.show.profile');
             Route::get('/edit/profile/{id}', 'UserController@editProfile')->name('users_.edit.profile');
             Route::put('/update/profile/{id}', 'UserController@updateProfile')->name('users_.update.profile');
         });
+
+        /*** Grounds Routes ***/
+        Route::resource('/grounds', 'GroundController');
+
+        Route::resource('roles', 'ACL\RolesController');
+        Route::resource('permissions', 'ACL\PermissionsController');
     });
 });

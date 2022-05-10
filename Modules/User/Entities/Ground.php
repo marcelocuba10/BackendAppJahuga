@@ -13,14 +13,21 @@ class Ground extends Model
         'name',
         'price',
         'description',
-        'company_id',
+        'day',
+        'schedule',
+        'user_id',
         'image'
     ];
 
-    public function company()
+    public function user()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'day' => 'array',
+        'schedule' => 'array',
+    ];
 
     protected static function newFactory()
     {

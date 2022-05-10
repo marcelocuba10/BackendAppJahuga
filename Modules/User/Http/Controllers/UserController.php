@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Hash;
 use Modules\User\Entities\User;
 use Modules\User\Http\Requests\UpdateRequest;
 
+//spatie
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 class UserController extends Controller
 {
 
@@ -23,12 +27,14 @@ class UserController extends Controller
     {
         $users = User::latest()->paginate(5);
 
-        return view('user::dashboard',compact('users'));
+        return view('user::users.index',compact('users'));
     }
 
     public function create()
     {
-        return view('user::create');
+        $roles = Role::pluck('name', 'name')->all(); //get all roles to send only names to form
+        $userRole = null; //set null for select form not compare with others roles
+        return view('user::users.create', compact('roles', 'userRole'));
     }
 
     public function store(Request $request)
@@ -38,7 +44,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        return view('user::show');
+        return view('user::users.show');
     }
 
     public function showProfile($id)
@@ -50,7 +56,18 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        return view('user::edit');
+        $user = User::find($id);
+        $roles = Role::pluck('name', 'name')->all(); #get all roles to send only names to form
+        //$roles = Role::all(); //get all roles to send array to form
+        $userRoleArray = $user->roles->pluck('name')->toArray(); //get user assigned role
+
+        if (empty($userRoleArray)) {
+            $userRole = null;
+        } else {
+            $userRole = $userRoleArray[0]; //get only name of the role
+        }
+
+        return view('user::users.edit', compact('user', 'roles', 'userRole'));
     }
 
     public function editProfile($id)

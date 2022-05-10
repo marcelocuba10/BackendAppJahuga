@@ -31,7 +31,7 @@ class Users extends Authenticatable
 
     protected static function newFactory()
     {
-        return \Modules\Admin\Database\factories\UsersFactory::new();
+        //return \Modules\Admin\Database\factories\UsersFactory::new();
     }
 
     public function setPasswordAttribute($password)

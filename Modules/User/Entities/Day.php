@@ -11,8 +11,7 @@ class Day extends Model
 
     protected $fillable = [
         'name',
-        'id_company',
-        'id_ground',
+        'ground_id',
         'status'
     ];
     

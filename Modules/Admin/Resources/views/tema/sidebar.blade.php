@@ -29,38 +29,27 @@
             </li>
             @can('user-list')
             <li class="#">
-                <a href="{{ route('partners.index') }}"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Customers</span></a>
+                <a href="{{ route('partners.index') }}"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Clientes</span></a>
             </li>
             @endcan
             <li class="#">
-                <a href="#"><i class="fa fa-clone" aria-hidden="true"></i> <span class="nav-label">Extracts</span></a>
+                <a href="#"><i class="fa fa-clone" aria-hidden="true"></i> <span class="nav-label">Usuarios</span></a>
             </li>
             <li class="#">
-                <a href="#"><i class="fa fa-circle-o-notch" aria-hidden="true"></i> <span class="nav-label">Quotas</span></a>
+                <a href="#"><i class="fa fa-circle-o-notch" aria-hidden="true"></i> <span class="nav-label">Canchas</span></a>
             </li>
             <li class="#">
-                <a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i> <span class="nav-label">Deposits</span></a>
+                <a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i> <span class="nav-label">Reservas</span></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-university" aria-hidden="true"></i> <span class="nav-label">Movimientos</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="#">Entrada</a></li>
+                    <li><a href="#">Salida</a></li>
+                </ul>
             </li>
             <li class="#">
-                <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i> <span class="nav-label">withdrawals</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-university" aria-hidden="true"></i> <span class="nav-label">Transferences</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-sitemap" aria-hidden="true"></i> <span class="nav-label">Franchises</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-money" aria-hidden="true"></i> <span class="nav-label">Expenses</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> <span class="nav-label">Offer Book</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">My Affiliates</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-handshake-o" aria-hidden="true"></i> <span class="nav-label">Work Us</span></a>
+                <a href="#"><i class="fa fa-sitemap" aria-hidden="true"></i> <span class="nav-label">Pagos</span></a>
             </li>
             <li class="#">
                 <a href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> <span class="nav-label">Reports</span></a>
@@ -70,15 +59,6 @@
             </li>
             <li class="#">
                 <a href="#"><i class="fa fa-life-ring" aria-hidden="true"></i> <span class="nav-label">Support</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> <span class="nav-label">Usage Policy</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-file" aria-hidden="true"></i> <span class="nav-label">Contract</span></a>
-            </li>
-            <li class="#">
-                <a href="#"><i class="fa fa-globe" aria-hidden="true"></i> <span class="nav-label">Translations</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span class="nav-label">Settings</span> <span class="fa arrow"></span></a>

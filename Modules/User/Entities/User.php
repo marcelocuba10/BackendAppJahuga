@@ -6,22 +6,38 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-//passport
+use Illuminate\Notifications\Notifiable;
+
+//spatie
+use Spatie\Permission\Traits\HasRoles;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory;
+    
+    use HasFactory, Notifiable, HasRoles, HasApiTokens;  //importante adicionar HasRoles
+
+    protected $guard_name = 'web';
 
     protected $fillable = [
         'name',
-        'company',
+        'last_name',
         'phone',
         'address',
         'email',
         'password',
-        'terms'
+        'terms',
+        
+        'company_name',
+        'manager',
+        'ruc',
+        'location_iframe',
     ];
+
+    public function grounds()
+    {
+        return $this->hasMany(Ground::class);
+    }
 
     protected $hidden = [
         'password',

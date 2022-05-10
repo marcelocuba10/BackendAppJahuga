@@ -1,15 +1,15 @@
-@extends('user::tema.app')
+@extends('admin::tema.app')
 @section('content')
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>List users</h2>
+        <h2>List permissions</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('user.dashboard') }}">Home</a>
+                <a href="{{ route('admin.dashboard') }}">Home</a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="{{ route('users.index') }}">users</a>
+                <a href="{{ route('permissions.index') }}">permissions</a>
             </li>
         </ol>
     </div>
@@ -23,8 +23,8 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                @can('user-create')
-                                    <a href="{{ route('users.create') }}" title="Create a user" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Cliente</a>
+                                @can('role-create')
+                                    <a href="{{ route('permissions.create') }}" title="Create a permission" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> New permission</a>
                                 @endcan
                             </div>
                         </div>
@@ -77,42 +77,28 @@
                                             colspan="1" aria-label="Name: activate to sort column ascending"
                                             style="width: 299px;">Name </th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                            colspan="1" aria-label="Name: activate to sort column ascending"
-                                            style="width: 299px;">Username </th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                            colspan="1" aria-label="Description: activate to sort column ascending"
-                                            style="width: 207px;">Email</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                         colspan="1"
                                         style="width: 150px;">Actions</th>    
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($users as $user)
+                                    @foreach ($permissions as $permission)
                                     <tr class="gradeA odd" role="row">
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->username }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $permission->name }}</td>
                                         <td class="text-right">
                                             <div class="btn-group">
-                                                <a href="#" class="btn btn-secondary btn-xs btn_list_options">
-                                                    <i class="fa fa-list-alt" aria-hidden="true"></i>
-                                                </a>
-                                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-success btn-xs btn_list_options">
-                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                </a>
-                                                @can('user-edit')
-                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-xs btn_list_options">
-                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                </a>
+                                                @can('role-edit')
+                                                    <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-primary btn-xs btn_list_options">
+                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    </a>
                                                 @endcan
-                                                @can('user-delete')
-                                                <form method="POST" action="{{ route('users.destroy',$user->id) }}">
-                                                    @csrf
-                                                    <input name="_method" type="hidden" value="DELETE">
-                                                    <button type="submit" class="btn btn-danger btn-xs btn_list_options show_confirm" data-toggle="tooltip" title='Eliminar'><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                </form>
+                                                @can('role-delete')
+                                                    <form method="POST" action="{{ route('permissions.destroy',$permission->id) }}">
+                                                        @csrf
+                                                        <input name="_method" type="hidden" value="DELETE">
+                                                        <button type="submit" class="btn btn-danger btn-xs btn_list_options show_confirm" data-toggle="tooltip" title='Eliminar'><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                    </form>
                                                 @endcan
                                             </div>
                                         </td>
@@ -121,15 +107,7 @@
                                 </tbody>
                             </table>
 
-                            {{ $users->links() }} <!-- paginacion default -->
-
-                            <!-- para que se muestre correctamente, ir en AppServiceProvider y editar boot(){Paginator::useBootstrap();} and use Illuminate\Pagination\Paginator; -->
-                            {{-- @if (isset($filters))
-                                {!! $orders-> appends($filters)->links() !!} <!-- appends permite enviar un array con todos los datos que
-                                    utilizare en la paginacion-->
-                            @else
-                                {!! $orders-> links() !!}    
-                            @endif --}}
+                            {{ $permissions->links() }} <!-- paginacion default -->
                             
                         </div>
                     </div>

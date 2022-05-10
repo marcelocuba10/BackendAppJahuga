@@ -6,18 +6,6 @@
         <input type="text" name="name" class="form-control" placeholder="Ingrese nombre" autocomplete="off" value="{{ $ground->name ?? old('name') }}">
     </div>
 </div>
-<div class="form-group  row">
-    <label class="col-sm-2 col-form-label">* Empresa</label>
-    <div class="col-sm-8">
-        <select class="form-control m-b" name="company_id">
-            <option value="#"> ghdfghgfdh </option>
-            <option value="#"> ghdfghgfdh </option>
-        </select>
-    </div>
-    <div class="col-sm-2">
-        <a class="btn btn-primary btn-sm" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-    </div>
-</div>
 <div class="form-group  row"><label class="col-sm-2 col-form-label">* Precio</label>
     <div class="col-sm-3">
         <input type="text" name="price" class="form-control" placeholder="Ingrese precio" autocomplete="off" value="{{ $ground->price ?? old('price') }}">
@@ -25,7 +13,7 @@
 </div>
 <div class="form-group  row"><label class="col-sm-2 col-form-label">Descripcion / Observacion</label>
     <div class="col-sm-10">
-        <input type="text" name="description" class="form-control" placeholder="Enter description" autocomplete="off" value="{{ $ground->description ?? old('description') }}">
+        <input type="text" name="description" class="form-control" placeholder="Ingrese descripcion" autocomplete="off" value="{{ $ground->description ?? old('description') }}">
     </div>
 </div>
 
@@ -38,7 +26,7 @@
             <div class="i-checks">
                 <label>
                     <!-- guardo en array ya que se puede marcar mas de un valor -->
-                    <input name="day[]" type="checkbox" value="{{ $day->id }}" @if(!empty($isDay)) {{ in_array($day->name, $isDay)  ? 'checked' : '' }} @endif><i></i> {{ $day->name }} 
+                    <input name="day[]" type="checkbox" value="{{ $day }}" @if(!empty($days_selected)) {{ in_array($day, $days_selected)  ? 'checked' : '' }} @endif><i></i> {{ $day }} 
                 </label>
             </div>
         @endforeach
@@ -49,11 +37,11 @@
             <div class="i-checks">
                 <label>
                     <!-- guardo en array ya que se puede marcar mas de un valor -->
-                    <input name="schedule[]" type="checkbox" value="{{ $schedule->id }}" @if(!empty($isSchedule)) {{ in_array($schedule->name, $isSchedule)  ? 'checked' : '' }} @endif><i></i> {{ $schedule->name }} 
+                    <input name="schedule[]" type="checkbox" value="{{ $schedule }}" @if(!empty($schedules_selected)) {{ in_array($schedule, $schedules_selected)  ? 'checked' : '' }} @endif><i></i> {{ $schedule }} 
                 </label>
             </div>
         @endforeach
-    </div>
+    </div> 
 </div>
 
 <div class="hr-line-dashed"></div>

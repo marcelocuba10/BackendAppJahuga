@@ -5,18 +5,19 @@ namespace Modules\User\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Schedule extends Model
+class Role extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'ground_id',
-        'status'
+        'guard_name',
     ];
+
+    protected $guarded = [];
     
     protected static function newFactory()
     {
-        //return \Modules\User\Database\factories\ScheduleFactory::new();
+        //return \Modules\Admin\Database\factories\RoleFactory::new();
     }
 }

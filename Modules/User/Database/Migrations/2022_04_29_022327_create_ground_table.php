@@ -18,17 +18,11 @@ class CreateGroundTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->double('price',8,3);
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->string('day');
+            $table->string('schedule');
             $table->string('status')->nullable();
-            $table->string('company_id')->unsigned();
             $table->timestamps();
-
-            $table->bigInteger('company_id')->unsigned()->index();
-            $table->foreign('company_id')
-                   ->references('id')
-                   ->on('companies')
-                   ->onDelete('cascade');
-
         });
     }
 
