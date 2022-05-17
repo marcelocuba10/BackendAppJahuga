@@ -15,6 +15,14 @@ class GroundApiController extends Controller
         return response()->json($grounds);
     }
 
+    public function edit($id)
+    {
+
+        $ground = Ground::find($id);
+        
+        return response()->json($ground);
+    }
+
     public function store(Request $request){
         //validation
         $request->validate([

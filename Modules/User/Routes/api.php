@@ -33,4 +33,5 @@ Route::group(['prefix' => 'auth'], function () {
 Route::middleware(['cors'])->group(function () {
     Route::resource('orders','OrderController');
     Route::get('grounds',[GroundApiController::class,'index']);
+    Route::get('grounds/{id}',[GroundApiController::class,'edit']);
 });

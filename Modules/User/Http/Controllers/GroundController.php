@@ -35,8 +35,8 @@ class GroundController extends Controller
     public function create()
     {
         $schedules = Schedule::all();
-
-        
+        $days=self::$days;
+        $schedules=self::$schedules;
 
         $user = auth()->user();
 

@@ -16,7 +16,7 @@ class CreateGroundTable extends Migration
         Schema::create('grounds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->double('price',8,3);
             $table->string('image')->nullable();
             $table->string('day');
