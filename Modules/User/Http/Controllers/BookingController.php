@@ -5,9 +5,11 @@ namespace Modules\User\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\User\Entities\Booking;
 use Modules\User\Entities\Ground;
+use Modules\User\Entities\User;
 
-class GroundController extends Controller
+class BookingController extends Controller
 {
 
     public static $days;
@@ -19,10 +21,14 @@ class GroundController extends Controller
         self::$schedules = array("12:00", "14:00", "16:00", "18:00", "20:00", "22:00", "00:00");
     }
 
+    /**
+     * Display a listing of the resource.
+     * @return Renderable
+     */
     public function index()
     {
-        $grounds = Ground::paginate(5);
-        return view('user::grounds.index', compact('grounds'));
+        $bookings = Booking::paginate(5);
+        return view('user::bookings.index', compact('bookings'));
     }
 
     /**
@@ -36,7 +42,10 @@ class GroundController extends Controller
 
         $user = auth()->user();
 
-        return view('user::grounds.create', compact('schedules', 'days', 'user'));
+        $customers  = User::all();
+        $grounds = Ground::all();
+
+        return view('user::bookings.create', compact('schedules', 'days', 'user','customers','grounds'));
     }
 
     /**
@@ -47,25 +56,16 @@ class GroundController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:100|min:5',
-            'price' => 'required',
-            'description' => 'nullable|max:250|min:10',
-            'day' => 'required',
-            'schedule' => 'required',
-            'image' => 'nullable',
+            'ground_id' => 'required',
+            'appointment' => 'required',
         ]);
-
-        //$days = $request->get('day');   // array:3 [0 => "1", 1 => "2" , 2 => "3"] 
-        //$days = json_encode($request->get('day'));  //  "["1","2","3"]"
-        //$days = implode(",", $request->get('day'));   //  "1,2,3"
-        //dd($days);
 
         $request->day = json_encode($request->get('day'));
         $request->schedule = json_encode($request->get('schedule'));
 
-        Ground::create($request->all());
+        Booking::create($request->all());
 
-        return redirect()->to('/user/grounds')->with('message', 'Cancha creada correctamente');
+        return redirect()->to('/user/bookings')->with('message', 'Reserva creada correctamente');
     }
 
     /**
@@ -75,7 +75,7 @@ class GroundController extends Controller
      */
     public function show($id)
     {
-        return view('user::grounds.show');
+        return view('user::bookings.show');
     }
 
     /**
@@ -85,16 +85,15 @@ class GroundController extends Controller
      */
     public function edit($id)
     {
+        $booking = Booking::find($id);
 
-        $ground = Ground::find($id);
-
-        $days_selected = $ground->day;
-        $schedules_selected = $ground->schedule;
+        $days_selected = $booking->day;
+        $schedules_selected = $booking->schedule;
 
         $days = self::$days;
         $schedules = self::$schedules;
 
-        return view('user::grounds.edit', compact('ground', 'schedules', 'days', 'days_selected', 'schedules_selected'));
+        return view('user::bookings.edit', compact('booking', 'schedules', 'days', 'days_selected', 'schedules_selected'));
     }
 
     /**
@@ -103,24 +102,20 @@ class GroundController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, Ground $ground)
+    public function update(Request $request, Booking $booking)
     {
 
         $request->validate([
-            'name' => 'required|max:100|min:5',
-            'price' => 'required',
-            'description' => 'nullable|max:250|min:10',
-            'day' => 'required',
-            'schedule' => 'required',
-            'image' => 'nullable',
+            'ground_id' => 'required',
+            'appointment' => 'required',
         ]);
 
         $request->day = json_encode($request->get('day'));
         $request->schedule = json_encode($request->get('schedule'));
 
-        $ground->update($request->all());
+        $booking->update($request->all());
 
-        return redirect()->to('/user/grounds')->with('message', 'Cancha actualizada correctamente');
+        return redirect()->to('/user/bookings')->with('message', 'Reserva actualizada correctamente');
     }
 
     /**
@@ -130,10 +125,10 @@ class GroundController extends Controller
      */
     public function destroy($id)
     {
-        $ground = Ground::find($id);
+        $booking = Booking::find($id);
 
-        $ground->delete();
+        $booking->delete();
 
-        return redirect()->to('/user/grounds')->with('message', 'Cancha eliminada correctamente');
+        return redirect()->to('/user/bookings')->with('message', 'Reserva eliminada correctamente');
     }
 }

@@ -7,7 +7,10 @@
                     <img alt="image" class="rounded-circle" src="/tema/img/profile_small.jpg"/>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="block m-t-xs font-bold">@if(Auth::check()) {{Auth::user()->username}} @endif</span>
-                        <span class="text-muted text-xs block">ID user: 0015<b class="caret"></b></span>
+                        <span class="text-muted text-xs block">                            
+                            @if (Auth::guard('web')->check())
+                                {{ Auth::guard('web')->user()->getRoleNames()[0] }}
+                            @endif<b class="caret"></b></span>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a class="dropdown-item" href="{{ route('users_.show.profile', Auth::user()->id) }}">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Contacts</a></li>
@@ -31,7 +34,7 @@
                 <a href="/user/grounds"><i class="fa fa-cubes" aria-hidden="true"></i>Canchas<span class="nav-label"></span></a>
             </li>
             <li class="#">
-                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> <span class="nav-label">Reservas</span></a>
+                <a href="/user/bookings"><i class="fa fa-bookmark" aria-hidden="true"></i> <span class="nav-label">Reservas</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-university" aria-hidden="true"></i> <span class="nav-label">Movimientos</span> <span class="fa arrow"></span></a>
@@ -53,7 +56,7 @@
                 <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span class="nav-label">Configuraciones</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="#">General Settings</a></li>
-                    @can('super_user-list')
+                    @can('user-list')
                     <li class="#">
                         <a href="{{ route('users.index') }}"><span class="nav-label">Users</span></a>
                     </li>

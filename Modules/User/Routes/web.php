@@ -47,6 +47,9 @@ Route::prefix('user')->group(function () {
         /*** Grounds Routes ***/
         Route::resource('/grounds', 'GroundController');
 
+        /*** Bookings Routes ***/
+        Route::resource('/bookings', 'BookingController');
+
         Route::resource('roles', 'ACL\RolesController');
         Route::resource('permissions', 'ACL\PermissionsController');
     });

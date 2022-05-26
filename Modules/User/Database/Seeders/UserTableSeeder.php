@@ -42,7 +42,7 @@ class UserTableSeeder extends Seeder
 
         $role->syncPermissions($permissions);
 
-        $user->syncRoles(['admin']);
+        $user->syncRoles(['Admin']);
      
         $user->assignRole([$role->id]);
     }

@@ -74,7 +74,17 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        return view('user::users.editProfile', compact('user'));
+        $roles = Role::pluck('name', 'name')->all(); #get all roles to send only names to form
+        //$roles = Role::all(); //get all roles to send array to form
+        $userRoleArray = $user->roles->pluck('name')->toArray(); //get user assigned role
+
+        if (empty($userRoleArray)) {
+            $userRole = null;
+        } else {
+            $userRole = $userRoleArray[0]; //get only name of the role
+        }
+
+        return view('user::users.editProfile', compact('user', 'roles', 'userRole'));
     }
 
     public function update(Request $request, $id)

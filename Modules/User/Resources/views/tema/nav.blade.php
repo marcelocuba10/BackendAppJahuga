@@ -112,7 +112,7 @@
             </li>
             <li>
                 @auth
-                    <a href="/admin/logout"><i class="fa fa-sign-out"></i> Logout</a>
+                    <a href="/user/logout"><i class="fa fa-sign-out"></i> Logout</a>
                 @endauth
             </li>
         </ul>

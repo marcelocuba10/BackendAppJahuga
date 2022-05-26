@@ -27,7 +27,7 @@
             <li class="#">
                 <a href="/admin/dashboard"><i class="fa fa-line-chart" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
             </li>
-            @can('user-list')
+            @can('super_user-list')
             <li class="#">
                 <a href="{{ route('partners.index') }}"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Clientes</span></a>
             </li>

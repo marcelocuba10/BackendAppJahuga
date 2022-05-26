@@ -3,13 +3,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>List users</h2>
+        <h2>Lista de Reservas</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('user.dashboard') }}">Home</a>
+                <a href="/user/dashboard">Inicio</a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="{{ route('users.index') }}">users</a>
+                <a href="/user/bookings">Reservas</a>
             </li>
         </ol>
     </div>
@@ -23,9 +23,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                @can('user-create')
-                                    <a href="{{ route('users.create') }}"  class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Cliente</a>
-                                @endcan
+                                <a href="/user/bookings/create/" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nueva Reserva</a>
                             </div>
                         </div>
                     </div>
@@ -75,45 +73,45 @@
                                     <tr role="row">
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                             colspan="1" aria-label="Name: activate to sort column ascending"
-                                            style="width: 299px;">Name </th>
+                                            style="width: 299px;">Cod Cancha</th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                             colspan="1" aria-label="Name: activate to sort column ascending"
-                                            style="width: 299px;">Username </th>
+                                            style="width: 299px;">Agendamiento</th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                             colspan="1" aria-label="Description: activate to sort column ascending"
-                                            style="width: 207px;">Email</th>
+                                            style="width: 207px;">Estado</th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                            colspan="1" aria-label="Description: activate to sort column ascending"
+                                            style="width: 207px;">Total</th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                         colspan="1"
-                                        style="width: 150px;">Actions</th>    
+                                        style="width: 150px;">Acciones</th>    
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($users as $user)
+                                    @foreach ($bookings as $booking)
                                     <tr class="gradeA odd" role="row">
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->username }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $booking->ground_id }}</td>
+                                        <td>{{ $booking->appointment }}</td>
+                                        <td>{{ $booking->status }}</td>
+                                        <td>{{ number_format((double)$booking->total, 3, '.', ''); }} GS</td>
                                         <td class="text-right">
                                             <div class="btn-group">
                                                 <a href="#" class="btn btn-secondary btn-xs btn_list_options">
                                                     <i class="fa fa-list-alt" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-success btn-xs btn_list_options">
+                                                <a href="{{ route('bookings.show', $booking->id) }}" class="btn btn-success btn-xs btn_list_options">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
-                                                @can('user-edit')
-                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-xs btn_list_options">
+                                                <a href="{{ route('bookings.edit', $booking->id) }}" class="btn btn-primary btn-xs btn_list_options">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
-                                                @endcan
-                                                @can('user-delete')
-                                                <form method="POST" action="{{ route('users.destroy',$user->id) }}">
+                                                <form method="POST" action="{{ route('bookings.destroy',$booking->id) }}">
                                                     @csrf
                                                     <input name="_method" type="hidden" value="DELETE">
                                                     <button type="submit" class="btn btn-danger btn-xs btn_list_options show_confirm" data-toggle="tooltip" title='Eliminar'><i class="fa fa-trash" aria-hidden="true"></i></button>
                                                 </form>
-                                                @endcan
                                             </div>
                                         </td>
                                     </tr>
@@ -121,16 +119,8 @@
                                 </tbody>
                             </table>
 
-                            {{ $users->links() }} <!-- paginacion default -->
+                            {{ $bookings->links() }} <!-- paginacion default -->
 
-                            <!-- para que se muestre correctamente, ir en AppServiceProvider y editar boot(){Paginator::useBootstrap();} and use Illuminate\Pagination\Paginator; -->
-                            {{-- @if (isset($filters))
-                                {!! $orders-> appends($filters)->links() !!} <!-- appends permite enviar un array con todos los datos que
-                                    utilizare en la paginacion-->
-                            @else
-                                {!! $orders-> links() !!}    
-                            @endif --}}
-                            
                         </div>
                     </div>
                 </div>

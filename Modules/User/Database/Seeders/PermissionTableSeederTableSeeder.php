@@ -31,7 +31,7 @@ class PermissionTableSeederTableSeeder extends Seeder
             'user-create',
             'user-edit',
             'user-delete',
-
+            
             'movement-list',
             'movement-create',
             'movement-edit',

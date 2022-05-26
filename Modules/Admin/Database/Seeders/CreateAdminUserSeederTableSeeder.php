@@ -23,13 +23,13 @@ class CreateAdminUserSeederTableSeeder extends Seeder
 
         $user = SuperUser::create([
             'name' => 'Super User', 
-            'username' => 'admin', 
+            'username' => 'superadmin', 
             'email' => 'admin@admin.com',
             'password' => 'teste123',
             'terms' => '1'
         ]);
     
-        $role = Role::create(['name' => 'Admin','guard_name' => 'admin'],);
+        $role = Role::create(['name' => 'SuperAdmin','guard_name' => 'admin'],);
      
         $permissions = Permission::pluck('id','id')->all();
    

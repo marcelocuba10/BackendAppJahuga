@@ -15,14 +15,11 @@
     </div>
 </div>
 
-<div class="form-group  row"><label class="col-sm-2 col-form-label">Rol Asignado</label>
-    <span class="form-text m-b-none">{{ $userRole  ?? '' }}</span>
-</div>
-<div class="form-group  row"><label class="col-sm-2 col-form-label">*Rol</label>
+<div class="form-group  row"><label class="col-sm-2 col-form-label">*Rol Asignado</label>
     <div class="col-sm-10">
         <select class="form-control m-b" name="roles">
             @foreach ($roles as $role)
-                <option value="{{ $role }}" {{ ( $role == 'Admin') ? 'selected' : '' }} selected = {{ ( $role == 'Admin') ? 'selected' : '' }}> {{ $role}} </option>
+                <option value="{{ $role }}" {{ ( $role === $userRole) ? 'selected' : '' }}> {{ $role}} </option>
             @endforeach 
         </select>
     </div>
