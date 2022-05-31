@@ -23,8 +23,7 @@
                   ring-primary
                   px-3
                   py-[6px]
-                  rounded-lg
-                ">
+                  rounded-lg">
                             <span class="relative w-[30px] h-[2px] my-[6px] block bg-white"></span>
                             <span class="relative w-[30px] h-[2px] my-[6px] block bg-white"></span>
                             <span class="relative w-[30px] h-[2px] my-[6px] block bg-white"></span>
@@ -44,8 +43,7 @@
                   right-4
                   top-full
                   hidden
-                  lg:block lg:static lg:shadow-none
-                ">
+                  lg:block lg:static lg:shadow-none">
                             <ul class="blcok lg:flex">
                                 <li class="relative group">
                                     <a href="#home" class="
@@ -59,8 +57,7 @@
                         lg:py-6 lg:inline-flex lg:px-0
                         flex
                         mx-8
-                        lg:mr-0
-                      ">
+                        lg:mr-0">
                                         Home
                                     </a>
                                 </li>
@@ -77,8 +74,7 @@
                         flex
                         mx-8
                         lg:mr-0 lg:ml-7
-                        xl:ml-12
-                      ">
+                        xl:ml-12">
                                         About
                                     </a>
                                 </li>
@@ -95,8 +91,7 @@
                         flex
                         mx-8
                         lg:mr-0 lg:ml-7
-                        xl:ml-12
-                      ">
+                        xl:ml-12">
                                         Pricing
                                     </a>
                                 </li>
@@ -113,8 +108,7 @@
                         flex
                         mx-8
                         lg:mr-0 lg:ml-7
-                        xl:ml-12
-                      ">
+                        xl:ml-12">
                                         Team
                                     </a>
                                 </li>
@@ -131,8 +125,7 @@
                         flex
                         mx-8
                         lg:mr-0 lg:ml-7
-                        xl:ml-12
-                      ">
+                        xl:ml-12">
                                         Contact
                                     </a>
                                 </li>
@@ -161,8 +154,7 @@
                         after:right-1
                         after:top-1/2
                         after:-translate-y-1/2
-                        after:mt-[-2px]
-                      ">
+                        after:mt-[-2px]">
                                         Pages
                                     </a>
                                     <div class="
@@ -182,8 +174,7 @@
                         lg:group-hover:visible lg:group-hover:top-full
                         bg-white
                         transition-[top]
-                        duration-300
-                      ">
+                        duration-300">
                                         <a href="about.html" class="
                           block
                           text-sm text-body-color
@@ -271,7 +262,7 @@
                     <div class="sm:flex justify-end hidden pr-16 lg:pr-0">
                         @auth
                             <a href="/user/dashboard" class="text-base font-medium text-white hover:opacity-70 py-3 px-7 loginBtn ">
-                                {{auth()->user()->username}}
+                                {{auth()->user()->name}}
                             </a>
                             <a href="{{ route('logout.perform') }}" class="text-base font-medium text-white bg-white bg-opacity-20 rounded-lg py-3 px-6 hover:bg-opacity-100 hover:text-dark signUpBtn duration-300 ease-in-out">
                                 Cerrar Sesion
