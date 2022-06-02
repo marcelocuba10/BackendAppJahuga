@@ -33,7 +33,8 @@ class UserTableSeeder extends Seeder
             'manager' => 'roberto carlos',
             'ruc' => '45255-2', 
             'location_iframe' => 'url maps aqui',
-            'terms' => '1'
+            'terms' => '1',
+            'status' => '1'
         ]);
 
         $role = Role::create(['name' => 'Admin','guard_name' => 'web'],);

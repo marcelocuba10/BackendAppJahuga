@@ -21,13 +21,14 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('email')->unique();
 
-            $table->string('company_name');
+            $table->string('company_name')->nullable();
             $table->string('manager')->nullable();
-            $table->string('ruc');
+            $table->string('ruc')->nullable();;
             $table->string('location_iframe')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('terms');
+            $table->string('status');
             $table->rememberToken();
             $table->timestamps();
         });
