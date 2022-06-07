@@ -3,12 +3,12 @@
 <div class="form-group  row">
     <label class="col-sm-2 col-form-label">* Nombre</label>
     <div class="col-sm-10">
-        <input type="text" name="name" class="form-control" placeholder="Ingrese nombre" autocomplete="off" value="{{ $ground->name ?? old('name') }}">
+        <input type="text" name="name" id="name" class="form-control" placeholder="Ingrese nombre" autocomplete="off" value="{{ $ground->name ?? old('name') }}">
     </div>
 </div>
 <div class="form-group  row"><label class="col-sm-2 col-form-label">* Precio</label>
     <div class="col-sm-3">
-        <input type="text" name="price" class="form-control" placeholder="Ingrese precio" autocomplete="off" value="{{ $ground->price ?? old('price') }}">
+        <input type="text" id="currency" name="price" class="form-control" placeholder="Ingrese precio" autocomplete="off" value="{{ $ground->price ?? old('price') }}">
     </div>
 </div>
 <div class="form-group  row"><label class="col-sm-2 col-form-label">Descripcion / Observacion</label>

@@ -29,6 +29,13 @@ class Ground extends Model
         'schedule' => 'array',
     ];
 
+    // Mutator for Name column
+    // when "name" will save, it will convert into lowercase
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
+
     protected static function newFactory()
     {
         //return \Modules\User\Database\factories\GroundFactory::new();
