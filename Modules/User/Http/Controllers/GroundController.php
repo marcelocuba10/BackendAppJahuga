@@ -46,6 +46,7 @@ class GroundController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => 'required|max:100|min:5',
             'price' => 'required',
@@ -85,8 +86,10 @@ class GroundController extends Controller
      */
     public function edit($id)
     {
+        
 
         $ground = Ground::find($id);
+        //dd($ground);
 
         $days_selected = $ground->day;
         $schedules_selected = $ground->schedule;
@@ -105,7 +108,6 @@ class GroundController extends Controller
      */
     public function update(Request $request, Ground $ground)
     {
-
         $request->validate([
             'name' => 'required|max:100|min:5',
             'price' => 'required',

@@ -2,7 +2,7 @@
 
 <div class="form-group  row"><label class="col-sm-2 col-form-label">*Cliente</label>
     <div class="col-sm-8">
-        <select class="form-control m-b" name="roles">
+        <select class="form-control m-b" name="customer">
             <option value="">Seleccione un cliente </option>
             @foreach ($customers as $customer)
                 <option value="{{ $customer }}"> {{ $customer->name}} </option>

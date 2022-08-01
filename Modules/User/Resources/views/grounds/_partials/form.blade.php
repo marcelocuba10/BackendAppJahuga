@@ -8,7 +8,7 @@
 </div>
 <div class="form-group  row"><label class="col-sm-2 col-form-label">* Precio</label>
     <div class="col-sm-3">
-        <input type="text" id="currency" name="price" class="form-control" placeholder="Ingrese precio" autocomplete="off" value="{{ $ground->price ?? old('price') }}">
+        <input type="text" id="currency" name="price" class="form-control" placeholder="Ingrese precio" autocomplete="off" value="{{ number_format((double)$ground->price, 3, '.', ''); }} ?? old('price') }}">
     </div>
 </div>
 <div class="form-group  row"><label class="col-sm-2 col-form-label">Descripcion / Observacion</label>

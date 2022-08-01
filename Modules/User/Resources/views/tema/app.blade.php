@@ -63,6 +63,7 @@
     <script src="/tema/js/plugins/dataTables/datatables.min.js"></script>
     <script src="/tema/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
     <script src="/js/vanilla-masker.min.js"></script>
+    <script src="/js/all-scripts.js"></script>
 
     <script>
         // ======== InputMask in all forms only inputs Date & Phone
@@ -73,17 +74,17 @@
             // Decimal precision -> "90"
             precision: 3,
             // Decimal separator -> ",90"
-            separator: ',',
+            separator: '.',
             // Number delimiter -> "12.345.678"
-            //delimiter: '.',
+            delimiter: '.',
             // Money unit -> "R$ 12.345.678,90"
             //unit: 'G$',
             // Money unit -> "12.345.678,90 R$"
-            suffixUnit: 'GS',
+            //suffixUnit: 'GS',
             // Force type only number instead decimal,
-            // masking decimals with ",00"
+            //masking decimals with ",00"
             // Zero cents -> "R$ 1.234.567.890,00"
-            zeroCents: true
+            //zeroCents: true
           });
 
           VMasker(document.getElementById("phone")).maskPattern('(999) 999 999');
