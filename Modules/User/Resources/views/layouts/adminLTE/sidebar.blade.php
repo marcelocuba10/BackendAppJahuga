@@ -9,7 +9,7 @@
           </p>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{ (request()->is('user/registers/*')) ? 'menu-is-opening menu-open' : '' }}">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-edit"></i>
           <p>
@@ -17,10 +17,10 @@
             <i class="fas fa-angle-left right"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview">
+        <ul class="nav nav-treeview" id="submenu_1">
           @can('user-list')
           <li class="nav-item">
-            <a href="/user/users" class="nav-link {{ (request()->is('user/users')) ? 'active' : '' }}">
+            <a href="/user/registers/users" class="nav-link {{ (request()->is('user/registers/users')) ? 'active' : '' }}">
               <i class="far fa-circle nav-icon"></i>
               <p>Clientes</p>
             </a>
@@ -33,7 +33,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/forms/editors.html" class="nav-link">
+            <a href="/user/registers/grounds" class="nav-link {{ (request()->is('user/registers/grounds')) ? 'active' : '' }}">
               <i class="far fa-circle nav-icon"></i>
               <p>Canchas</p>
             </a>
@@ -155,3 +155,17 @@
     </ul>
   </nav>
   <!-- /.sidebar-menu -->
+
+  <script type="text/javascript">
+    function toggle(menu_1, submenu_1) {
+      var n = document.getElementById(menu_1);
+      document.getElementById('menu_1').classList.add('menu-is-opening menu-open tt');
+      // if (n.style.display != 'none'){
+      //   n.style.display = 'none';
+      //   document.getElementById(submenu_1).setAttribute('aria-expanded', 'false');
+      // }else{
+      //   n.style.display = 'block';
+      //   document.getElementById(submenu_1).setAttribute('aria-expanded', 'true');
+      // }
+    }
+  </script>

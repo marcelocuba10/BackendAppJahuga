@@ -5,6 +5,6 @@ body:not(.layout-fixed) .main-sidebar {
     top: 0;
 }
 
-sidebar a {
+.nav-pills .nav-link {
     color: #c2c7d0;
 }

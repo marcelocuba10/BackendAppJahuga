@@ -55,21 +55,6 @@ Route::prefix('user')->group(function () {
             });
         });
 
-        /*** User Routes ***/
-        Route::group(['prefix' => 'users'], function () {
-            Route::get('/', 'UserController@index')->name('users.index');
-            Route::get('/create', 'UserController@create')->name('users.create');
-            Route::post('/create', 'UserController@store')->name('users.store');
-            Route::get('/{user}/show', 'UserController@show')->name('users.show');
-            Route::get('/edit/{id}', 'UserController@edit')->name('users.edit');
-            Route::put('/update/{id}', 'UserController@update')->name('users.update');
-            Route::delete('/{user}/delete', 'UserController@destroy')->name('users.destroy');
-            Route::get('/profile/{user}', 'UserController@showProfile')->name('users_.show.profile');
-            Route::get('/edit/profile/{id}', 'UserController@editProfile')->name('users_.edit.profile');
-            Route::put('/update/profile/{id}', 'UserController@updateProfile')->name('users_.update.profile');
-            Route::get('/search', 'UserController@search')->name('users.search');
-        });
-
         /*** Notifications Routes ***/
         Route::group(['prefix' => 'notifications'], function () {
             Route::get('/', 'NotificationsController@index')->name('notifications.index');
@@ -82,49 +67,39 @@ Route::prefix('user')->group(function () {
             Route::get('/search', 'NotificationsController@search')->name('notifications.search');
         });
 
-        /** Machines Routes*/
-        Route::group(['prefix' => 'machines'], function () {
-            Route::any('/list', 'MachinesController@index_list')->name('machines.index_list');
-            Route::any('/list_api', 'MachinesController@index_list_api')->name('machines.index_list_api');
+        /** Registers Routes*/
+        Route::group(['prefix' => 'registers'], function () {
 
-            Route::get('/grid_view', 'MachinesController@grid_view')->name('machines.grid_view');
-            Route::any('/grid_view_api', 'MachinesController@grid_view_api')->name('machines.grid_view_api');
+            /*** User Routes ***/
+            Route::group(['prefix' => 'users'], function () {
+                Route::get('/', 'UserController@index')->name('users.index');
+                Route::get('/create', 'UserController@create')->name('users.create');
+                Route::post('/create', 'UserController@store')->name('users.store');
+                Route::get('/{user}/show', 'UserController@show')->name('users.show');
+                Route::get('/edit/{id}', 'UserController@edit')->name('users.edit');
+                Route::put('/update/{id}', 'UserController@update')->name('users.update');
+                Route::delete('/{user}/delete', 'UserController@destroy')->name('users.destroy');
+                Route::get('/profile/{user}', 'UserController@showProfile')->name('users_.show.profile');
+                Route::get('/edit/profile/{id}', 'UserController@editProfile')->name('users_.edit.profile');
+                Route::put('/update/profile/{id}', 'UserController@updateProfile')->name('users_.update.profile');
+                Route::get('/search', 'UserController@search')->name('users.search');
+            });
 
-            Route::get('/create', 'MachinesController@create')->name('machines.create');
-            Route::post('/create', 'MachinesController@store')->name('machines.store');
-
-            Route::get('/{id}/show', 'MachinesController@show')->name('machines.show');
-            Route::get('/{id}/show_api', 'MachinesController@show_api')->name('machines.show_api');
-
-            Route::get('/edit/{id}', 'MachinesController@edit')->name('machines.edit');
-            Route::put('/update/{id}', 'MachinesController@update')->name('machines.update');
-            Route::delete('/{id}/delete', 'MachinesController@destroy')->name('machines.destroy');
-            Route::get('/createPDF', 'MachinesController@createPDF')->name('machines.createPDF');
-
-            Route::any('/search_filter_list', 'MachinesController@search_filter_list')->name('machines.search_filter_list');
-            Route::any('/search_filter_list_api', 'MachinesController@search_filter_list_api')->name('machines.search_filter_list_api');
-
-            Route::any('/search_gridview', 'MachinesController@search_gridview')->name('machines.search_gridview');
-            Route::any('/search_gridview_api', 'MachinesController@search_gridview_api')->name('machines.search_gridview_api');
-            Route::any('/filter_gridview', 'MachinesController@filter_gridview')->name('machines.filter_gridview');
-            Route::any('/filter_gridview_api', 'MachinesController@filter_gridview_api')->name('machines.filter_gridview_api');
-
-            /** Import/Export CSV */
-            Route::get('import-csv', 'ImportExportController@index')->name('index.import.csv');
-            Route::post('import', 'ImportExportController@importcsv')->name('import.csv');
+            /*** Grounds Routes ***/
+            Route::group(['prefix' => 'grounds'], function () {
+                Route::get('/', 'GroundController@index')->name('grounds.index');
+                Route::get('/create', 'GroundController@create')->name('grounds.create');
+                Route::post('/create', 'GroundController@store')->name('grounds.store');
+                Route::get('/show/{id}', 'GroundController@show')->name('grounds.show');
+                Route::get('/edit/{id}', 'GroundController@edit')->name('grounds.edit');
+                Route::put('/update/{id}', 'GroundController@update')->name('grounds.update');
+                Route::delete('/delete/{id}', 'GroundController@destroy')->name('grounds.destroy');
+                Route::get('/search', 'GroundController@search')->name('grounds.search');
+            });
         });
 
-        /*** Customers Routes ***/
-        Route::group(['prefix' => 'customers'], function () {
-            Route::get('/', 'CustomersController@index')->name('customers.index');
-            Route::get('/create', 'CustomersController@create')->name('customers.create');
-            Route::post('/create', 'CustomersController@store')->name('customers.store');
-            Route::get('/show/{id}', 'CustomersController@show')->name('customers.show');
-            Route::get('/edit/{id}', 'CustomersController@edit')->name('customers.edit');
-            Route::put('/update/{id}', 'CustomersController@update')->name('customers.update');
-            Route::delete('/delete/{id}', 'CustomersController@destroy')->name('customers.destroy');
-            Route::get('/search', 'CustomersController@search')->name('customers.search');
-        });
+        /*** Bookings Routes ***/
+        Route::resource('/bookings', 'BookingController');
 
         /*** Schedules Routes ***/
         Route::group(['prefix' => 'schedules'], function () {
@@ -146,10 +121,5 @@ Route::prefix('user')->group(function () {
             Route::get('/users', 'ReportsController@users')->name('reports.users');
             Route::get('/schedules', 'ReportsController@schedules')->name('reports.schedules');
         });
-
-        /** Posts only teste*/
-        Route::any('posts', 'PostController@index')->name('posts.index');
-        Route::get('posts/show', 'PostController@show')->name('posts.show');
-        Route::any('posts/search', 'PostController@search')->name('posts.search');
     });
 });
