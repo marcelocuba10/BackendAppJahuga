@@ -1,0 +1,44 @@
+.icon-success{
+    color: #28a745;
+}
+
+.icon-info{
+    color: #138496;
+}
+
+.icon-danger{
+    color: #dc3545;
+}
+
+body:not(.layout-fixed) .main-sidebar {
+    height: 100vh;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+}
+
+.nav-pills .nav-link {
+    color: #c2c7d0 !important;
+}
+
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover {
+    background-color: rgba(255,255,255,.9);
+    color: #343a40 !important;
+}
+
+[class*=sidebar-dark-] .nav-sidebar>.nav-item.menu-open>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus {
+    background-color: #4e6a89 !important;
+    color: #fff !important;
+}
+
+.input-checkbox {
+    padding-left: 29px!important;
+    min-height: 22px;
+    line-height: 22px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+}

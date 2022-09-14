@@ -1,132 +1,110 @@
 @extends('user::layouts.adminLTE.app')
 @section('content')
 
-<section class="table-components">
-    <div class="container-fluid">
-      <!-- ========== title-wrapper start ========== -->
-      <div class="title-wrapper pt-30">
-        <div class="row align-items-center">
-          <div class="col-md-8">
-            <div class="title d-flex align-items-center flex-wrap mb-30">
-              <h2 class="mr-40">Roles</h2>
-              @can('role-create')
-                <a href="/user/ACL/roles/create" class="main-btn info-btn btn-hover btn-sm"><i class="lni lni-plus mr-5"></i> Nuevo</a>
-              @endcan  
-            </div>
-          </div>
-          <!-- end col -->
-          <div class="col-md-4">
-            <div class="right">
-              <div class="table-search d-flex" style="margin-top: -35px;float: right;">
-                <form action="/user/ACL/roles/search">
-                  <input style="background-color: #fff;" id="search" type="text" name="search" value="{{ $search ?? '' }}" placeholder="Buscar Rol..">
-                  <button type="submit"><i class="lni lni-search-alt"></i></button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <!-- end col -->
-        </div>
-        <!-- end row -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Roles</h1>
       </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/user/dashboard">Inicio</a></li>
+          <li class="breadcrumb-item active">Roles</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- ========== title-wrapper end ========== -->
-
-      <!-- ========== tables-wrapper start ========== -->
-      <div class="tables-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-              <div class="card-style mb-30">
-                <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
-              <div class="left">
-                {{-- <div class="dataTable-dropdown">
-                  <label>
-                      <select class="dataTable-selector">
-                          <option value="5">5</option>
-                          <option value="10" selected="">10</option>
-                          <option value="15">15</option>
-                          <option value="20">20</option>
-                          <option value="25">25</option>
-                      </select> entries per page
-                  </label>
-                </div> --}}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+              <div class="row" style="padding-bottom: 15px;">
+                <div class="col-sm-12 col-md-6">
+                  @can('role-create')
+                    <a class="btn btn-sm bg-success" href="/user/ACL/roles/create"><i class="fas fa-plus"></i> Nuevo</a>
+                  @endcan
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div id="example1_filter" style="float: right;" class="dataTables_filter">
+                    <form action="/user/ACL/roles/search">
+                      <input style="background-color: #fff;" class="form-control form-control-sm" id="search" type="text" name="search" value="{{ $search ?? '' }}"
+                        placeholder="Buscar cliente..">
+                    </form>
+                  </div>
+                </div>
               </div>
-              <div class="right">
-              </div>
-            </div>
-                <div class="table-wrapper table-responsive">
-                  <table class="table">
+              <div class="row">
+                <div class="col-sm-12">
+                  <table id="example1" class="table table-bordered table-striped dataTable dtr-inline"
+                    aria-describedby="example1_info">
                     <thead>
                       <tr>
-                        <th><h6>#</h6></th>
-                        <th><h6>Nombre</h6></th>
-                        <th><h6>Guard</h6></th>
-                        <th><h6>Acciones</h6></th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">#</th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Nombre</th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Guard_name</th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($roles as $role)
-                        <tr>
-                            <td class="min-width"><h6 class="text-sm">#{{ ++$i }}</h6></td>
-                            <td class="min-width"><p>{{ $role->name }}</p></td>
-                            <td class="min-width"><p>{{ $role->guard_name }}</p></td>
-
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <div class="action">
-                                      <a href="{{ route('roles.user.show', $role->id) }}">
-                                          <button class="text-active">
-                                              <i class="lni lni-eye"></i>
-                                          </button>
-                                      </a>
-                                    </div>
-                                    @can('role-edit')
-                                    <div class="action">
-                                        <a href="{{ route('roles.user.edit', $role->id) }}">
-                                          @if (!$role->system_role)
-                                            <button class="text-info">
-                                                <i class="lni lni-pencil"></i>
-                                            </button>
-                                          @endif  
-                                        </a>
-                                    </div>
-                                    @endcan
-                                    @can('role-delete')
-                                    <form method="POST" action="{{ route('roles.user.destroy', $role->id) }}">
-                                        @csrf
-                                        <div class="action">
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            @if (!$role->system_role)
-                                              <button type="submit" class="text-danger">
-                                                <i class="lni lni-trash-can"></i>
-                                              </button>
-                                            @endif  
-                                        </div>
-                                    </form>
-                                    @endcan
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
+                      @foreach ($roles as $role)
+                      <tr class="odd">
+                        <td>#{{ ++$i }}</td>
+                        <td>{{ $role->name }}</td>
+                        <td>{{ $role->guard_name }}</td>
+                        <td>
+                          <div class="btn-group">
+                            <a href="/user/ACL/roles/show/{{ $role->id }}">
+                              <button type="button" class="btn btn-default">
+                                <i class="fa fa-eye icon-info"></i>
+                              </button>
+                            </a>
+                            @can('role-edit')
+                            <a href="/user/ACL/roles/edit/{{ $role->id }}">
+                              @if (!$role->system_role)
+                                <button type="button" class="btn btn-default">
+                                  <i class="fa fa-paint-brush icon-success"></i>
+                                </button>
+                              @endif  
+                            </a>
+                            @endcan
+                            @can('role-delete')
+                            <form method="POST" action="/user/ACL/roles/delete/{{ $role->id }}">
+                              @csrf
+                              <input name="_method" type="hidden" value="DELETE">
+                              @if (!$role->system_role)
+                                <button type="submit" class="btn btn-default">
+                                  <i class="fa fa-trash icon-danger"></i>
+                                </button>
+                              @endif  
+                            </form>
+                            @endcan
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
-                  <!-- end table -->
-                  @if (isset($search))
-                    {!! $roles-> appends($search)->links() !!} <!-- appends envia variable en la paginacion-->
-                  @else
-                    {!! $roles-> links() !!}    
-                  @endif
                 </div>
               </div>
-              <!-- end card -->
+              <div class="row">
+                @if (isset($search))
+                  {!! $roles-> appends($search)->links() !!} <!-- appends envia variable en la paginacion-->
+                @else
+                  {!! $roles-> links() !!}    
+                @endif
+              </div>
             </div>
-            <!-- end col -->
           </div>
-        <!-- end row -->
+        </div>
       </div>
-      <!-- ========== tables-wrapper end ========== -->
     </div>
-    <!-- end container -->
-  </section>
+  </div>
+</section>
 
 @endsection

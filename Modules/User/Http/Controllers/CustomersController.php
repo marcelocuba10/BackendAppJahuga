@@ -24,14 +24,17 @@ class CustomersController extends Controller
 
     public function index()
     {
-        $idRefCurrentUser = Auth::user()->idReference;
-        $customers = DB::table('customers')
-            ->where('customers.idReference', '=', $idRefCurrentUser)
-            ->select('customers.id', 'customers.name', 'customers.pool', 'customers.phone', 'customers.total_machines', 'customers.address')
-            ->orderBy('customers.created_at', 'DESC')
+        $currentUser = Auth::user();
+        $currentUserId = $currentUser->id;
+        $idReference = $currentUser->idReference;
+
+        $customers = DB::table('users')
+            ->where('idReference', '=', $idReference)
+            ->select('id', 'name', 'idReference', 'idMaster', 'email')
+            ->orderBy('created_at', 'DESC')
             ->paginate(10);
 
-        return view('user::customers.index', compact('customers'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('user::customers.index', compact('customers', 'currentUserId'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     public function grid_view()

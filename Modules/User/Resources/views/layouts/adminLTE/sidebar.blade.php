@@ -17,12 +17,20 @@
             <i class="fas fa-angle-left right"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview" id="submenu_1">
+        <ul class="nav nav-treeview">
+          @can('customer-list')
+          <li class="nav-item">
+            <a href="/user/registers/customers" class="nav-link {{ (request()->is('user/registers/customers')) || (request()->is('user/registers/customers/create')) || (request()->is('user/registers/customers/edit')) ? 'active' : '' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Clientes</p>
+            </a>
+          </li>
+          @endcan
           @can('user-list')
           <li class="nav-item">
             <a href="/user/registers/users" class="nav-link {{ (request()->is('user/registers/users')) ? 'active' : '' }}">
               <i class="far fa-circle nav-icon"></i>
-              <p>Clientes</p>
+              <p>Funcionarios</p>
             </a>
           </li>
           @endcan
@@ -109,7 +117,7 @@
       </li>
       @endcan
 
-      <li class="nav-item">
+      <li class="nav-item {{ (request()->is('user/ACL/*')) || (request()->is('/user/profile')) ? 'menu-is-opening menu-open' : '' }}">
         <a href="#" class="nav-link">
           <i class="nav-icon fa fa-cog"></i>
           <p>
@@ -119,53 +127,21 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="{{ route('users_.show.profile', Auth::user()->id) }}" class="nav-link">
+            <a href="/user/profile/{{ Auth::user()->id }}" class="nav-link {{ (request()->is('/user/profile')) ? 'active' : '' }}">
               <i class="far fa-circle nav-icon"></i>
               <p>Mi Perfil</p>
             </a>
           </li>
+          @can('role-list')
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/user/ACL/roles" class="nav-link {{ (request()->is('user/ACL/roles')) ? 'active' : '' }}">
               <i class="far fa-circle nav-icon"></i>
-              <p>ACL
-                <i class="fas fa-angle-left right"></i>
-              </p>
+              <p>Roles</p>
             </a>
-            <ul class="nav nav-treeview" style="display: none;">
-              @can('role-list')
-              <li class="nav-item">
-                <a href="/user/ACL/roles" class="nav-link {{ (request()->is('user/ACL/roles')) ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Roles</p>
-                </a>
-              </li>
-              @endcan
-              @can('permission-list')
-              <li class="nav-item">
-                <a href="/user/ACL/permissions" class="nav-link {{ (request()->is('user/ACL/permissions')) ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Permisos</p>
-                </a>
-              </li>
-              @endcan
-            </ul>
           </li>
+          @endcan     
         </ul>
       </li>
     </ul>
   </nav>
   <!-- /.sidebar-menu -->
-
-  <script type="text/javascript">
-    function toggle(menu_1, submenu_1) {
-      var n = document.getElementById(menu_1);
-      document.getElementById('menu_1').classList.add('menu-is-opening menu-open tt');
-      // if (n.style.display != 'none'){
-      //   n.style.display = 'none';
-      //   document.getElementById(submenu_1).setAttribute('aria-expanded', 'false');
-      // }else{
-      //   n.style.display = 'block';
-      //   document.getElementById(submenu_1).setAttribute('aria-expanded', 'true');
-      // }
-    }
-  </script>

@@ -5,12 +5,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Clientes</h1>
+        <h1>Usuarios</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="/user/dashboard">Inicio</a></li>
-          <li class="breadcrumb-item active">Clientes</li>
+          <li class="breadcrumb-item active">Usuarios</li>
         </ol>
       </div>
     </div>
@@ -34,7 +34,7 @@
                   <div id="example1_filter" style="float: right;" class="dataTables_filter">
                     <form action="/user/registers/users/search">
                       <input style="background-color: #fff;" class="form-control form-control-sm" id="search" type="text" name="search" value="{{ $search ?? '' }}"
-                        placeholder="Buscar cliente..">
+                        placeholder="Buscar usuario..">
                     </form>
                   </div>
                 </div>
@@ -69,23 +69,23 @@
                         <td><i class="lni lni-envelope mr-10"></i>{{ $user->email }}</td>
                         <td>
                           <div class="btn-group">
-                            <a href="/user/registers/users/{{ $user->id }}/show">
+                            <a href="/user/registers/users/show/{{ $user->id }}">
                               <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
                             @can('user-edit')
                               @if ($currentUserId != $user->id)
                               <a href="/user/registers/users/edit/{{ $user->id }}">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a>
                               @endif
                             @endcan
                             @can('user-delete')
                             @if ($currentUserId != $user->id)
-                            <form method="POST" action="/user/registers/users/{{ $user->id }}/delete">
+                            <form method="POST" action="/user/registers/users/delete/{{ $user->id }}">
                               @csrf
                                 <input name="_method" type="hidden" value="DELETE">
                                 <button type="submit" class="text-danger">
-                                  <i class="lni lni-trash-can"></i>
+                                  <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </button>
                             </form>
                             @endif

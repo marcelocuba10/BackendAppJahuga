@@ -52,7 +52,13 @@ class RolesController extends Controller
             'permission' => 'required'
         ]);
 
-        $role = Role::create(['name' => $request->input('name'), 'guard_name' => 'web']);
+        $role = Role::create([
+            'name' => $request->input('name'),
+            'guard_name' => 'web',
+            'system_role' => 0,
+            'idReference' => Auth::user()->idReference
+        ]);
+
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.user.index')->with('message', 'Role created successfully');

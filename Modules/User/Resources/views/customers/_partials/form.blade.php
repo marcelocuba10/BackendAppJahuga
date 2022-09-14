@@ -1,93 +1,38 @@
 @csrf
-<div class="row">
-    <div class="col-6">
-      <div class="input-style-1">
-        <label>(*) Nombre</label>
-        <input type="text" name="name" value="{{ $customer->name ?? old('name') }}" class="bg-transparent">
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>(*) Nombre Completo</label>
+        <input value="{{ $customer->name ?? old('name') }}" type="text" name="name" class="form-control">
       </div>
     </div>
-    <!-- end col -->
-    <div class="col-6">
-      <div class="input-style-1">
-        <label>Teléfono</label>
-        <input type="text" id="phone" name="phone" value="{{ $customer->phone ?? old('phone') }}" class="bg-transparent">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>(*) Teléfono</label>
+        <input value="{{ $customer->phone ?? old('phone') }}" type="text" name="phone" class="form-control">
       </div>
     </div>
-    <!-- end col -->
-    <div class="col-5">
-      <div class="input-style-1">
+    <div class="col-md-6">
+      <div class="form-group">
         <label>Dirección</label>
-        <input type="text" name="address" value="{{ $customer->address ?? old('address') }}" class="bg-transparent">
+        <input value="{{ $customer->address ?? old('address') }}" type="text" name="address" class="form-control">
       </div>
     </div>
-    <!-- end col -->
-    <div class="col-3">
-      <div class="input-style-1">
-        <label>(*) Cantidad Máquinas</label>
-        <input type="number" min="0" name="total_machines" value="{{ $customer->total_machines ?? old('total_machines') }}" class="bg-transparent">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>(*) Doc Identidad</label>
+        <input value="{{ $customer->doc_id ?? old('doc_id') }}" type="text" name="doc_id" class="form-control">
       </div>
     </div>
-    <!-- end col -->
-    <div class="col-sm-4">
-      <div class="select-style-1">
-        <label>Pool Name</label>
-        <div class="select-position">
-          @if ($customer)
-            <select name="pool">
-              @foreach ($pools_options as $pool)
-                  <option value="{{ $pool }}" {{ ( $pool === $customer->pool) ? 'selected' : '' }}> {{ $pool }} </option>
-              @endforeach 
-            </select> 
-          @else
-            <select name="pool">
-              @foreach ($pools_options as $pool)
-                  <option value="{{ $pool }}"> {{ $pool}} </option>
-              @endforeach 
-            </select> 
-          @endif
-        </div>
-      </div>
-    </div>
-    <!-- end col -->
-    <div class="col-4">
-      <div class="input-style-1">
-        <label>Access Key (btc.com)</label>
-        <input type="text" name="access_key" value="{{ $customer->access_key ?? old('access_key') }}" class="bg-transparent">
-      </div>
-    </div>
-    <!-- end col -->
-    <div class="col-4">
-      <div class="input-style-1">
-        <label>Puid (btc.com)</label>
-        <input type="text" name="puid" value="{{ $customer->puid ?? old('puid') }}" class="bg-transparent">
-      </div>
-    </div>
-    <!-- end col -->
-    <div class="col-4">
-      <div class="input-style-1">
-        <label>UserId (antpool.com)</label>
-        <input type="text" name="userIdPool" value="{{ $customer->userIdPool ?? old('userIdPool') }}" class="bg-transparent">
-      </div>
-    </div>
-    <!-- end col -->
-    <div class="col-4">
-      <div class="input-style-1">
-        <label>Api Key (antpool.com)</label>
-        <input type="text" name="apiKey" value="{{ $customer->apiKey ?? old('apiKey') }}" class="bg-transparent">
-      </div>
-    </div>
-    <!-- end col -->
-    <div class="col-4">
-      <div class="input-style-1">
-        <label>Secret Key (antpool.com)</label>
-        <input type="text" name="secretKey" value="{{ $customer->secretKey ?? old('secretKey') }}" class="bg-transparent">
-      </div>
-    </div>
-    <!-- end col -->
-    <div class="col-12">
-      <div class="button-group d-flex justify-content-center flex-wrap">
-        <button type="submit" class="main-btn primary-btn btn-hover m-2">Guardar</button>
-        <a class="main-btn danger-btn-outline m-2" href="/user/customers">Atrás</a>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="button-group d-flex justify-content-center" style="padding-bottom: 20px;">
+        <a href="/user/registers/customers" rel="noopener" class="btn btn-secondary"><i class="fa fa-chevron-left"></i> Atrás</a>
+        <button style="margin-left: 5px;" type="submit" class="btn btn-success"><i class="far fa-credit-card"></i> Guardar</button>
       </div>
     </div>
 </div>
