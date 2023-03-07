@@ -38,16 +38,13 @@ class GroundController extends Controller
         $days = self::$days;
         $schedules = self::$schedules;
 
+        $ground = null;
+
         $user = auth()->user();
 
-        return view('user::grounds.create', compact('schedules', 'days', 'user'));
+        return view('user::grounds.create', compact('ground','schedules', 'days', 'user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
     public function store(Request $request)
     {
         

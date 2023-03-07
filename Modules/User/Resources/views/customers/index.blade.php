@@ -9,7 +9,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="/user/dashboard">Inicio</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/user/dashboard') }}">Inicio</a></li>
           <li class="breadcrumb-item active">Clientes</li>
         </ol>
       </div>
@@ -27,12 +27,12 @@
               <div class="row" style="padding-bottom: 15px;">
                 <div class="col-sm-12 col-md-6">
                   @can('customer-create')
-                    <a class="btn btn-sm bg-success" href="/user/registers/customers/create"><i class="fas fa-plus"></i> Nuevo</a>
+                    <a class="btn btn-sm bg-success" href="{{ url('/user/records/customers/create') }}"><i class="fas fa-plus"></i> Nuevo</a>
                   @endcan
                 </div>
                 <div class="col-sm-12 col-md-6">
                   <div id="example1_filter" style="float: right;" class="dataTables_filter">
-                    <form action="/user/registers/customers/search">
+                    <form action="{{ url('/user/records/customers/search') }}">
                       <input style="background-color: #fff;" class="form-control form-control-sm" id="search" type="text" name="search" value="{{ $search ?? '' }}"
                         placeholder="Buscar cliente..">
                     </form>
@@ -69,19 +69,19 @@
                         <td><i class="lni lni-envelope mr-10"></i>{{ $customer->email }}</td>
                         <td>
                           <div class="btn-group">
-                            <a href="/user/registers/customers/{{ $customer->id }}/show">
+                            <a href="{{ url('/user/records/customers/show/'.$customer->id) }}">
                               <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
                             @can('customer-edit')
                               @if ($currentUserId != $customer->id)
-                              <a href="/user/registers/customers/edit/{{ $customer->id }}">
+                              <a href="{{ url('/user/records/customers/edit/'.$customer->id) }}">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                               </a>
                               @endif
                             @endcan
                             @can('customer-delete')
                             @if ($currentUserId != $customer->id)
-                            <form method="POST" action="/user/registers/customers/{{ $customer->id }}/delete">
+                            <form method="POST" action="{{ url('/user/records/customers/delete/'.$customer->id) }}">
                               @csrf
                                 <input name="_method" type="hidden" value="DELETE">
                                 <button type="submit" class="text-danger">

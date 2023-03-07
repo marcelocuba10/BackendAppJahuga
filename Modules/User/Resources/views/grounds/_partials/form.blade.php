@@ -1,19 +1,25 @@
 @csrf
 
-<div class="form-group  row">
-    <label class="col-sm-2 col-form-label">* Nombre</label>
-    <div class="col-sm-10">
-        <input type="text" name="name" id="name" class="form-control" placeholder="Ingrese nombre" autocomplete="off" value="{{ $ground->name ?? old('name') }}">
-    </div>
-</div>
-<div class="form-group  row"><label class="col-sm-2 col-form-label">* Precio</label>
-    <div class="col-sm-3">
-        <input type="text" id="currency" name="price" class="form-control" placeholder="Ingrese precio" autocomplete="off" value="{{ number_format((double)$ground->price, 3, '.', ''); }} ?? old('price') }}">
-    </div>
-</div>
-<div class="form-group  row"><label class="col-sm-2 col-form-label">Descripcion / Observacion</label>
-    <div class="col-sm-10">
-        <input type="text" name="description" class="form-control" placeholder="Ingrese descripcion" autocomplete="off" value="{{ $ground->description ?? old('description') }}">
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label><span class="c_red" data-toggle="tooltip" data-placement="bottom" title="Campo Obligatorio">(*)&nbsp;</span>Nombre</label>
+                <input type="text" name="name" class="form-control" value="{{ $ground->name ?? old('name') }}">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label><span class="c_red" data-toggle="tooltip" data-placement="bottom" title="Campo Obligatorio">(*)&nbsp;</span>Precio</label>
+                <input type="text" id="currency" name="price" class="form-control" value="{{ $ground->price ?? old('price') }}">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Descripción / Observación</label>
+                <input type="text" name="description" class="form-control" placeholder="Ingrese descripcion" value="{{ $ground->description ?? old('description') }}">
+            </div>
+        </div>
     </div>
 </div>
 
@@ -67,7 +73,7 @@
 <div class="hr-line-dashed"></div>
 <div class="form-group row">
     <div class="col-sm-4 col-sm-offset-2">
-        <a class="btn btn-white btn-sm" href="{{ route('grounds.index') }}" >Cancelar</a>
+        <a class="btn btn-white btn-sm" href="{{ url('/user/grounds') }}" >Cancelar</a>
         <button class="btn btn-primary btn-sm" type="submit">Guardar Cambios</button>
     </div>
 </div>

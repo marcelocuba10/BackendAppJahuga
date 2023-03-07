@@ -8,6 +8,9 @@
 .invoice-card .invoice-address {
     padding-top: 5px;
 }
+.c_red {
+    color: red;
+}
 
 /** start tabs style **/
 .tab-style-3 nav {

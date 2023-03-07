@@ -9,7 +9,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="/user/dashboard">Inicio</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/user/dashboard') }}">Inicio</a></li>
           <li class="breadcrumb-item active">Canchas</li>
         </ol>
       </div>
@@ -27,12 +27,12 @@
               <div class="row" style="padding-bottom: 15px;">
                 <div class="col-sm-12 col-md-6">
                   @can('ground-create')
-                    <a class="btn btn-sm bg-success" href="/user/registers/grounds/create"><i class="fas fa-plus"></i> Nuevo</a>
+                    <a class="btn btn-sm bg-success" href="{{ url('/user/records/grounds/create') }}"><i class="fas fa-plus"></i> Nuevo</a>
                   @endcan
                 </div>
                 <div class="col-sm-12 col-md-6">
                   <div id="example1_filter" style="float: right;" class="dataTables_filter">
-                    <form action="/user/registers/users/search">
+                    <form action="{{ url('/user/records/users/search') }}">
                       <input style="background-color: #fff;" class="form-control form-control-sm" id="search" type="text" name="search" value="{{ $search ?? '' }}"
                         placeholder="Buscar cancha..">
                     </form>
@@ -63,26 +63,26 @@
                         <td>{{ number_format((double)$ground->price, 3, '.', ''); }} GS</td>
                         <td>
                           <div class="btn-group">
-                            <a href="/user/registers/grounds/show/{{ $ground->id }}">
+                            <a href="{{ url('/user/records/grounds/show/'.$ground->id) }}">
                               <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
                             @can('ground-edit')
                               @if ($currentUserId != $ground->id)
-                              <a href="/user/registers/grounds/edit/{{ $ground->id }}">
+                              <a href="{{ url('/user/records/grounds/edit/'.$ground->id) }}">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                               </a>
                               @endif
                             @endcan
                             @can('ground-delete')
-                            @if ($currentUserId != $ground->id)
-                            <form method="POST" action="/user/registers/grounds/delete/{{ $ground->id }}">
-                              @csrf
-                                <input name="_method" type="hidden" value="DELETE">
-                                <button type="submit" class="text-danger">
-                                  <i class="lni lni-trash-can"></i>
-                                </button>
-                            </form>
-                            @endif
+                              @if ($currentUserId != $ground->id)
+                              <form method="POST" action="{{ url('/user/records/grounds/delete/'.$ground->id) }}">
+                                @csrf
+                                  <input name="_method" type="hidden" value="DELETE">
+                                  <button type="submit" class="text-danger">
+                                    <i class="lni lni-trash-can"></i>
+                                  </button>
+                              </form>
+                              @endif
                             @endcan
                           </div>
                         </td>

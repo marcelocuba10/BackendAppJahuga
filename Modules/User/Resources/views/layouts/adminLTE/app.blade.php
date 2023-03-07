@@ -4,26 +4,26 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="{{ asset('/tema/dist/img/favicon.png') }}" type="image/x-icon" />
   <title>App Jahuga | {{ config('app.name')}}</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="/tema/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="/tema/dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="/tema/dist/css/custom-style.css">
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="/tema/plugins/daterangepicker/daterangepicker.css">
-  <link rel="stylesheet" href="/tema/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <link rel="stylesheet" href="/tema/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
-  <link rel="stylesheet" href="/tema/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <link rel="stylesheet" href="/tema/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="/tema/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-  <link rel="stylesheet" href="/tema/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
-  <link rel="stylesheet" href="/tema/plugins/bs-stepper/css/bs-stepper.min.css">
-  <link rel="stylesheet" href="/tema/plugins/dropzone/min/dropzone.min.css">
-  <link rel="stylesheet" href="/tema/dist/css/adminlte.min.css">
+
+  <link rel="stylesheet" href="{{ url('/tema/dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/dist/css/custom-style.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/plugins/daterangepicker/daterangepicker.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/plugins/bs-stepper/css/bs-stepper.min.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/plugins/dropzone/min/dropzone.min.css') }}">
+  <link rel="stylesheet" href="{{ url('/tema/dist/css/adminlte.min.css') }}">
 
 </head>
 
@@ -33,13 +33,12 @@
   @include('user::layouts.adminLTE.navbar')
 
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="/" class="brand-link">
-      <img src="/tema/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ url('/') }}" class="brand-link">
+      <img src="{{ asset('/tema/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">App Jahuga</span>
     </a>
 
     @include('user::layouts.adminLTE.sidebar')
-    {{-- @include('user::layouts.includes.alerts') --}}
   </aside>
 
   <div class="content-wrapper">
@@ -53,24 +52,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js" type="text/javascript"></script>
   
   <!-- jQuery -->
-  <script src="/tema/plugins/jquery/jquery.min.js"></script>
-  <script src="/tema/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/tema/plugins/select2/js/select2.full.min.js"></script>
-  <script src="/tema/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-  <script src="/tema/plugins/moment/moment.min.js"></script>
-  <script src="/tema/plugins/inputmask/jquery.inputmask.min.js"></script>
-  <script src="/tema/plugins/daterangepicker/daterangepicker.js"></script>
-  <script src="/tema/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-  <script src="/tema/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="/tema/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-  <script src="/tema/plugins/bs-stepper/js/bs-stepper.min.js"></script>
-  <script src="/tema/plugins/dropzone/min/dropzone.min.js"></script>
-  <script src="/tema/dist/js/adminlte.min.js"></script>
-  <script src="/tema/dist/js/demo.js"></script>
+  <script src="{{ url('/tema/plugins/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url('/tema/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url('/tema/plugins/select2/js/select2.full.min.js') }}"></script>
+  <script src="{{ url('/tema/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+  <script src="{{ url('/tema/plugins/moment/moment.min.js') }}"></script>
+  <script src="{{ url('/tema/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+  <script src="{{ url('/tema/plugins/daterangepicker/daterangepicker.js') }}"></script>
+  <script src="{{ url('/tema/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+  <script src="{{ url('/tema/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+  <script src="{{ url('/tema/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+  <script src="{{ url('/tema/plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
+  <script src="{{ url('/tema/plugins/dropzone/min/dropzone.min.js') }}"></script>
+  <script src="{{ url('/tema/dist/js/adminlte.min.js') }}"></script>
+  <script src="{{ url('/tema/dist/js/demo.js') }}"></script>
 
-  <script src="/tema/dist/js/adminlte.js"></script>
-  <script src="/tema/plugins/chart.js/Chart.min.js"></script>
-  <script src="/tema/dist/js/pages/dashboard3.js"></script>
+  <script src="{{ url('/tema/dist/js/adminlte.js') }}"></script>
+  <script src="{{ url('/tema/plugins/chart.js/Chart.min.js') }}"></script>
+  <script src="{{ url('/tema/dist/js/pages/dashboard3.js') }}"></script>
 
   
   <!-- ========= Scripts ======== -->

@@ -3,7 +3,6 @@
 
 <section class="section">
   <div class="container-fluid">
-    <!-- ========== title-wrapper start ========== -->
     <div class="title-wrapper pt-30">
       <div class="row align-items-center">
         <div class="col-md-6">
@@ -15,8 +14,8 @@
           <div class="breadcrumb-wrapper mb-30">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/user/dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item" aria-current="page"><a href="/user/customers">Clientes</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/user/dashboard') }}">Dashboard</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="{{ url('/user/customers') }}">Clientes</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Detalle Cliente</li>
               </ol>
             </nav>
@@ -24,7 +23,7 @@
         </div>
       </div>
     </div>
-    <!-- ========== title-wrapper end ========== -->
+
     <div class="invoice-wrapper">
       <div class="row">
         <div class="col-12">

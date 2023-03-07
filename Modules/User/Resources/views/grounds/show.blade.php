@@ -1,4 +1,4 @@
-@extends('tema.app')
+@extends('user::layouts.adminLTE.app')
 @section('content')
 
 <div class="row wrapper border-bottom white-bg page-heading">

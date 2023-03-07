@@ -31,7 +31,7 @@
 <div class="row">
     <div class="col-md-12">
       <div class="button-group d-flex justify-content-center" style="padding-bottom: 20px;">
-        <a href="/user/registers/customers" rel="noopener" class="btn btn-secondary"><i class="fa fa-chevron-left"></i> Atrás</a>
+        <a href="{{ url('/user/records/customers') }}" rel="noopener" class="btn btn-secondary"><i class="fa fa-chevron-left"></i> Atrás</a>
         <button style="margin-left: 5px;" type="submit" class="btn btn-success"><i class="far fa-credit-card"></i> Guardar</button>
       </div>
     </div>
